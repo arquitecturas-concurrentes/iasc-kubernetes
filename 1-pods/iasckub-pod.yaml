@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iasckub-pod
+spec:
+  containers:
+  - image: iascfrba/iasckub:latest
+    name: iasckub
+    ports:
+    - containerPort: 8080
+      protocol: TCP

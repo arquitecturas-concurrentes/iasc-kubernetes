@@ -1,0 +1,7 @@
+
+
+```
+kubectl apply -f iasckub-pod.yaml 
+pod/iasckub-pod created
+```
+

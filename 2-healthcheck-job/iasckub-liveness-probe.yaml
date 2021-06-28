@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iasckub-liveness
+  namespace: iasc-namespace
+spec:
+  containers:
+  - image: iascfrba/iasckub-unhealthy
+    name: iasckub
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 25
+      failureThreshold: 3
+      periodSeconds: 10

@@ -1,0 +1,14 @@
+# para ver los contextos y poder switchear entre los clusters...
+
+kubectl config get-contexts
+
+use-context para cambiar de contexto... por ejemplo..
+
+kubectl config use-context minikube
+
+
+# cluster en digital ocean
+
+https://cloud.digitalocean.com/kubernetes/clusters/b04a9ba8-486d-48b8-b579-0957e2801682?i=bb168d
+
+https://cloud.digitalocean.com/kubernetes/clusters/b04a9ba8-486d-48b8-b579-0957e2801682/db/bb168d41-0c9d-45a7-a7ac-f348626e5819/#/overview?namespace=_all

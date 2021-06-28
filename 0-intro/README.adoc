@@ -1,0 +1,137 @@
+
+
+```
+kubectl create deployment simplest-deployment --image=k8s.gcr.io/echoserver:1.4
+kubectl expose deployment simplest-deployment --type=NodePort --port=8080
+```
+
+```
+$ kubectl get pods
+NAME                                   READY   STATUS    RESTARTS   AGE
+simplest-deployment-55665bfc59-drjd5   1/1     Running   0          36s
+```
+
+```
+$ kubectl get po simplest-deployment-55665bfc59-drjd5 -o yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-06-27T21:34:07Z"
+  generateName: simplest-deployment-55665bfc59-
+  labels:
+    app: simplest-deployment
+    pod-template-hash: 55665bfc59
+  name: simplest-deployment-55665bfc59-drjd5
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: simplest-deployment-55665bfc59
+    uid: 5b831b01-9f8c-4357-aaf5-2d897fac1935
+  resourceVersion: "10823"
+  uid: c8f2251e-f1ed-4320-a1a5-babcf8e44d5c
+spec:
+  containers:
+  - image: k8s.gcr.io/echoserver:1.4
+    imagePullPolicy: IfNotPresent
+    name: echoserver
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-vcglf
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-vcglf
+    secret:
+      defaultMode: 420
+      secretName: default-token-vcglf
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-06-27T21:34:07Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2021-06-27T21:34:19Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2021-06-27T21:34:19Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2021-06-27T21:34:07Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://6c9c3d0f4f9e42e883fd1e3c1ee69b7a97474f1214218dcab01277bf3ec9bd1d
+    image: k8s.gcr.io/echoserver:1.4
+    imageID: docker-pullable://k8s.gcr.io/echoserver@sha256:5d99aa1120524c801bc8c1a7077e8f5ec122ba16b6dda1a5d3826057f67b9bcb
+    lastState: {}
+    name: echoserver
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2021-06-27T21:34:19Z"
+  hostIP: 192.168.49.2
+  phase: Running
+  podIP: 172.17.0.5
+  podIPs:
+  - ip: 172.17.0.5
+  qosClass: BestEffort
+  startTime: "2021-06-27T21:34:07Z"
+```
+
+- Metadata includes the name, namespace, labels, and other information about the Pod.
+- Spec contains the actual description of the Pod’s contents, such as the Pod’s containers, volumes, and other data.
+- Status contains the current information about the running Pod, such as what condition the Pod is in, the description and status of each container, and at the end, the internal IP and other basic info.
+
+
+```
+kubectl get services simplest-deployment
+```
+
+```
+$ kubectl get services simplest-deployment
+NAME                  TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
+simplest-deployment   NodePort   10.97.66.70   <none>        8080:30349/TCP   13s
+```
+
+
+
+```
+kubectl port-forward service/simplest-deployment 7080:8080
+```
+
+
+```
+kubectl port-forward service/simplest-deployment 7080:8080
+Forwarding from 127.0.0.1:7080 -> 8080
+Forwarding from [::1]:7080 -> 8080
+```
