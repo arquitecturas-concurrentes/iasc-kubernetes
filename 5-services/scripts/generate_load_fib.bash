@@ -1,3 +1,3 @@
 #!/bin/bash
-IP="143.244.214.107"
-while true; do wget -q -O- ${IP}/fib; done
+URL="http://167.172.15.54/"
+while true; do wget -q -O- http://167.172.15.54/fib; done

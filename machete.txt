@@ -6,6 +6,7 @@ use-context para cambiar de contexto... por ejemplo..
 
 kubectl config use-context minikube
 
+minikube addons enable metrics-server
 
 # cluster en digital ocean
 
