@@ -1,6 +1,7 @@
 #!/bin/bash
 
 kubectl create deployment simplest-deployment --image=k8s.gcr.io/echoserver:1.4
+
 kubectl expose deployment simplest-deployment --type=NodePort --port=8080
 
 kubectl get pods

@@ -1,0 +1,39 @@
+apiVersion: autoscaling/v2beta2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    creationTimestamp: "2021-06-29T01:01:45Z"
+    name: iasc-service
+    namespace: iasc
+    resourceVersion: "997"
+    uid: efed681c-a5ad-4e74-960d-c5b377d49acb
+  spec:
+    maxReplicas: 5
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 80
+          type: Utilization
+      type: Resource
+    minReplicas: 2
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: iasc-service
+  status:
+    conditions:
+    - lastTransitionTime: "2021-06-29T01:02:00Z"
+      message: the HPA controller was able to get the target's current scale
+      reason: SucceededGetScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2021-06-29T01:02:00Z"
+      message: 'the HPA was unable to compute the replica count: failed to get cpu
+        utilization: unable to get metrics for resource cpu: failed to get pod resource
+        metrics: the server could not find the requested resource (get services http:heapster:)'
+      reason: FailedGetResourceMetric
+      status: "False"
+      type: ScalingActive
+    currentMetrics: null
+    currentReplicas: 2
+    desiredReplicas: 0
