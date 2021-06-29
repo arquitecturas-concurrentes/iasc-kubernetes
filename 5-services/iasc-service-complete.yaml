@@ -54,7 +54,7 @@ spec:
           requests:
             cpu: 200m    
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: iasc-service-autoscaler
@@ -64,13 +64,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: iasc-service
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 5
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 30
+  targetCPUUtilizationPercentage: 50
 ---  
