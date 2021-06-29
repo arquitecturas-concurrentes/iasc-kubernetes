@@ -1,3 +1,7 @@
+# Deployments
+
+## Sobre los deployments
+
 Un controlador de Deployment proporciona actualizaciones declarativas para los Pods y los ReplicaSets.
 
 Cuando describes el estado deseado en un objeto Deployment, el controlador del Deployment se encarga de cambiar el estado actual al estado deseado de forma controlada. Puedes definir Deployments para crear nuevos ReplicaSets, o eliminar Deployments existentes y adoptar todos sus recursos con nuevos Deployments.
@@ -45,7 +49,7 @@ deployment.apps/nginx-deployment created
 
 > Nota: Hay que indicar el parámetro --record para registrar el comando ejecutado en la anotación de recurso `kubernetes.io/change-cause`. Esto es útil para futuras introspecciones, por ejemplo para comprobar qué comando se ha ejecutado en cada revisión del Deployment.
 
-Con el comango `get deployments`, vamos a poder conocer en que estado estan nuestros deployments.
+Con el comando `get deployments`, vamos a poder conocer en que estado estan nuestros deployments.
 
 ```bash
 $ kubectl get deployments
@@ -145,7 +149,6 @@ Events:
 ```
 
 Este comando es bastante util ya que nos permite ver como esta compuesto el deployment, que template usan los pods, y la seccion `Events`, que nos muestra los eventos que se han registrado. Si nuestro deployment cambia en el tiempo tendremos nuevas versiones del deployment, ya que el mismo es inmutable (a menos que borremos el deployment).
-
 
 ## Editando un deployment
 

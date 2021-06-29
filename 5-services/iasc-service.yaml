@@ -46,8 +46,8 @@ spec:
             path: /health
             port: 8080
           initialDelaySeconds: 25
-          failureThreshold: 3
-          periodSeconds: 10  
+          failureThreshold: 5
+          periodSeconds: 90  
         resources:
           limits:
             cpu: "0.5"
