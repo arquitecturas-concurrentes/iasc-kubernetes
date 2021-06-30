@@ -1,4 +1,9 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: iasc-namespace
+---  
+apiVersion: v1
 kind: Pod
 metadata:
   name: iasckub-liveness
@@ -7,6 +12,9 @@ spec:
   containers:
   - image: iascfrba/iasckub-unhealthy
     name: iasckub
+    ports:
+    - containerPort: 8090
+      protocol: TCP
     livenessProbe:
       httpGet:
         path: /health
