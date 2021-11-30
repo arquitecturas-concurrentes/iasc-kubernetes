@@ -56,3 +56,13 @@ configuración.
 - `The Kubelet` which talks to the API server and manages containers on its node
 - `The Kubernetes Service Proxy (kube-proxy)`, which load-balances network traffic
 between application components
+
+### Notas
+
+Para instalar k8s dashboard ver el readme en el directorio de extra.
+
+En el caso de usar el ejemplo 5, el componente de HPA necesita de `metrics-server` para funcionar, por lo que hay que instalar este servicio previamente
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.2/components.yaml
+```
