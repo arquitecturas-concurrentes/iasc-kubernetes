@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: iasc-namespace
+  name: iasc
 ---  
 apiVersion: v1
 kind: Pod
 metadata:
   name: iasckub-liveness
-  namespace: iasc-namespace
+  namespace: iasc
 spec:
   containers:
   - image: iascfrba/iasckub-unhealthy
@@ -22,3 +22,38 @@ spec:
       initialDelaySeconds: 25
       failureThreshold: 3
       periodSeconds: 10
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: batch-job
+  namespace: iasc
+spec:
+  template:
+    metadata:
+      labels:
+        app: batch-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: main
+        image: iascfrba/iasc-busybox
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: batch-job-every-fifteen-minutes
+  namespace: iasc
+spec:
+  schedule: "0,15,30,45 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: periodic-batch-job
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: main
+            image: iascfrba/iasc-busybox

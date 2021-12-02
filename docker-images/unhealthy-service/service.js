@@ -19,7 +19,7 @@ app.get('/health', (req, res) => {
   healthCounter++;
   if (healthCounter > threshold) {
     res.status(500);
-    res.send('Hay prolemas. Reiuniciar el servicio.');
+    res.send('Hay prolemas. Reiniciar el servicio.');
     return;
   }
   
