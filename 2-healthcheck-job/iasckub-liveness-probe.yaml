@@ -10,10 +10,10 @@ metadata:
   namespace: iasc
 spec:
   containers:
-  - image: iascfrba/iasckub-unhealthy
+  - image: iascfrba/iasckub
     name: iasckub
     ports:
-    - containerPort: 8090
+    - containerPort: 8080
       protocol: TCP
     livenessProbe:
       httpGet:
@@ -39,7 +39,7 @@ spec:
       - name: main
         image: iascfrba/iasc-busybox
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: batch-job-every-fifteen-minutes
