@@ -3,7 +3,7 @@
 *Nota: el componente de HPA necesita de `metrics-server` para funcionar, por lo que hay que instalar este servicio previamente*
 
 ```bash
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.2/components.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.1/components.yaml
 ```
 
 En este ejemplo final vamos a usar un componente nuevo llamado [HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/), que nos permite escalar automaticamente la cantidad de pods de un replica controller basado en el uso de los recursos actuales de las replicas levantadas.
