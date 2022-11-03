@@ -12,14 +12,21 @@ spec:
   selector:
     matchLabels:
       app: iasckub
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: 4 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
         app: iasckub
     spec:
       containers:
-      - name: iasckub
-        image: iascfrba/iasckub:latest
-        ports:
-        - containerPort: 8080
+        - name: iasckub
+          image: iascfrba/iasckub:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: "0.3"
+            requests:
+              memory: 64Mi
+              cpu: "0.1"    
