@@ -13,7 +13,6 @@ spec:
   type: LoadBalancer
   selector:
     app: iasc-service
-  #clusterIP: 10.111.179.124
   ports:
     - name: http
       protocol: TCP
@@ -50,9 +49,11 @@ spec:
           periodSeconds: 90  
         resources:
           limits:
-            cpu: "0.5"
+            memory: 400Mi
+            cpu: 300m
           requests:
-            cpu: 200m    
+            memory: 200Mi
+            cpu: 100m    
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
