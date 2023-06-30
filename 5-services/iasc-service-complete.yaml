@@ -67,5 +67,5 @@ spec:
     name: iasc-service
   minReplicas: 2
   maxReplicas: 5
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 60
 ---  
