@@ -2,3 +2,30 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: iasc
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iasckub-liveness
+  namespace: iasc
+spec:
+  containers:
+  - image: iascfrba/iasckub-unhealthy
+    name: iasckub
+    ports:
+      - containerPort: 8080
+        protocol: TCP
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 30
+      failureThreshold: 3
+      periodSeconds: 10
+    resources:
+      limits:
+        memory: 256Mi
+        cpu: "0.5"
+      requests:
+        memory: 128Mi
+        cpu: "0.2"   
